@@ -1,11 +1,24 @@
 package com.corndel.framerate.models;
 
+import java.time.Instant;
+
 public class Review {
   private int id;
-  public int movieId;
-  public long createdAt;
-  public String content;
-  public int rating;
+  private int movieId;
+  private long createdAt;
+  private String content;
+  private int rating;
+
+  public Review() {}
+
+  public Review(int id, int movieId, String content, int rating, long createdAt) {
+    this.id = id;
+    this.movieId = movieId;
+    this.content = content;
+    this.rating = rating;
+    this.createdAt = createdAt;
+  }
+
 
   public String getContent() {
     return content;
