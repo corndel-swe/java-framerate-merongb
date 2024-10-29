@@ -38,12 +38,16 @@ public class D2E3 {
           // TODO: get the `name` and `email` from the form so that the below response
           // works
 
-          var name = "";
-          var email = "";
+            var name = ctx.formParam("name");
+            var email = ctx.formParam("email");
 
           ctx.result("Received: " + name + ", " + email);
         });
 
     return app;
   }
+    public static void main(String[] args) {
+        var javalin = createApp();
+        javalin.start(8081);
+    }
 }
