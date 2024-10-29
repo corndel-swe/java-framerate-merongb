@@ -16,7 +16,13 @@ public class ReviewRepository {
       try (var rs = stmt.executeQuery()) {
         var reviews = new ArrayList<Review>();
         while (rs.next()) {
-          reviews.add(new Review());
+          var review = new Review();
+          review.setId(rs.getInt("id"));
+          review.setMovieId(rs.getInt("movieId"));
+          review.setCreatedAt(rs.getLong("createdAt"));
+          review.setContent(rs.getString("content"));
+          review.setRating(rs.getInt("rating"));
+          reviews.add(review);
         }
         return reviews;
       }
