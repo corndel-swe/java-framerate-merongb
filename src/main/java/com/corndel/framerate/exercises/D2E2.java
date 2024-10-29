@@ -30,10 +30,12 @@ public class D2E2 {
           // TODO: Render 'd2e2.html'
           // (note, we have used setPrefix above so the path is relative to
           // /exercises/templates/)
+            ctx.render("d2e2.html");
 
           // TODO: Open d2e2.html and follow the instructions
         });
 
     return app;
   }
+
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Hello</h1>
+<ul>
+  <li th:each="movie : ${movies}">
+    <h2 th:text="${movie.title}"></h2>
+    <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>
+    <p>Age Rating: <span th:text="${movie.ageRating}"></span></p>
+    <p>Runtime: <span th:text="${movie.runtime}"></span></p>
+    <img th:src="${movie.imageURL}" alt="Image of ${movie.title}"/>
+  </li>
+</ul>
+</body>
+</html>
