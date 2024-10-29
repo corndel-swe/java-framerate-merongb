@@ -14,6 +14,8 @@ import io.javalin.rendering.template.JavalinThymeleaf;
 import java.util.List;
 import java.util.Map;
 
+import static com.corndel.framerate.repositories.ReviewRepository.postReview;
+
 public class App {
   public static void main(String[] args) {
     var javalin = createApp();
@@ -40,6 +42,7 @@ public class App {
           List<Movie> movies = MovieRepository.findAll();
           ctx.render("movies.html", Map.of("movies", movies));
       });
+
     app.get("/movie/{id}", ctx -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
         int movieId = id;
@@ -48,6 +51,22 @@ public class App {
         ctx.render("singleMovie.html", Map.of("movie", movie, "reviews", reviews));
     });
 
+    app.get("/review/{movieId}", ctx -> {
+        int movieId = Integer.parseInt(ctx.pathParam("movieId"));
+        ctx.render("reviewForm.html", Map.of("movieId", movieId));
+    });
+
+      app.post("/submit", ctx -> {
+
+              String movieIdParam = ctx.formParam("movieId");
+              int movieId = Integer.parseInt(movieIdParam);
+
+              String content = ctx.formParam("content");
+              int rating = Integer.parseInt(ctx.formParam("rating"));
+
+              Review review = postReview(movieId, content, rating);
+            ctx.redirect(String.format("/movie/%s", movieId));
+      });
 
 
     return app;
